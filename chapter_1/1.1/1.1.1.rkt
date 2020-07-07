@@ -1,5 +1,5 @@
 #lang sicp
-(+ 137 349) ; simple addition
+(+ 137 349) ; simple addition 
 (- 1000 334) ; simple subtraction
 (* 5 99) ; simple multiplication
 (/ 10 5) ; simple division
