@@ -38,17 +38,17 @@
 ; the small difference between big numbers, therefore good-enough? will never
 ; be and imrpove will keep giving the same value. 
 
-(define (new-sqrt-iter guess x)
-  (if (new-good-enough? guess (improve guess x))
+(define (new-sqrt-iter guess previous x)
+  (if (new-good-enough? guess previous x)
       guess
-      (new-sqrt-iter (improve guess x) x)))
+      (new-sqrt-iter (improve guess x)
+                     guess
+                     x)))
 
-(define (new-good-enough? guess x)
-  (if (= guess x)
-      guess
-      (< (abs (- (square guess) x)) 0.001)))
+(define (new-good-enough? guess previous x)
+  (< (abs (- guess previous)) (* guess 0.000000001)))
 
 (define (new-sqrt x)
-  (new-sqrt-iter 1.0 x))
+  (new-sqrt-iter 1.0 0 x))
 
-(new-sqrt 9)
+(new-sqrt 0.000001)
