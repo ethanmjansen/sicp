@@ -7,7 +7,8 @@
 ; good-enough?
 (define (good-enough? guess x)
   (< (abs (- (improve guess x) guess)) 
-     (* guess .001))) 
+     (* guess .001)))
+
 ; average
 (define (average x y)
   (/ (+ x y) 2))
@@ -27,4 +28,4 @@
 (define (cubrt x)
   (cubrt-iter 1.0 x))
 
-(cubrt 9)
+(cubrt 512)

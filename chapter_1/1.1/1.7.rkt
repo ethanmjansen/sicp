@@ -32,22 +32,23 @@
 ; improving the guess up until 0.001 but not after.
 
 ; large number example
-; (sqrt 10000000000000)
+; (sqrt 10000000000000) This enters an infinite loop
 ; large numbers break the example in a range somewhere between big numers
-; and absurdley large numbers, this is becasue the good-enough? looks at small
-; numbers but not big ones, therefore good-enough? will never be and imrpove will
-; keep returning the same value.
+; and absurdley large numbers, this is becasue the good-enough? can't tell
+; the small difference between big numbers, therefore good-enough? will never
+; be and imrpove will keep giving the same value. 
 
 (define (new-sqrt-iter guess x)
   (if (new-good-enough? guess (improve guess x))
       guess
       (new-sqrt-iter (improve guess x) x)))
 
- (define (new-good-enough? guess x) 
-  (< (abs (- (improve guess x) guess)) 
-     (* guess .001))) 
+(define (new-good-enough? guess x)
+  (if (= guess x)
+      guess
+      (< (abs (- (square guess) x)) 0.001)))
 
 (define (new-sqrt x)
   (new-sqrt-iter 1.0 x))
 
-(new-sqrt 0.0001)
+(new-sqrt 9)
